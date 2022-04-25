@@ -1,5 +1,4 @@
-import { AppState } from "./AppStateContext"
-
+import { AppState } from "./AppStateContext";
 export const save = (payload: AppState) => {
   return fetch(`${process.env.REACT_APP_BACKEND_ENDPOINT}/save`, {
     method: "POST",
@@ -8,17 +7,22 @@ export const save = (payload: AppState) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
-  })
-    .then((response) => {
-      return response.json()
-    })
-    .catch(console.log)
-}
-
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("Error while saving the state.");
+    }
+  });
+};
 export const load = () => {
   return fetch(`${process.env.REACT_APP_BACKEND_ENDPOINT}/load`).then(
     (response) => {
-      return response.json() as Promise<AppState>
+      if (response.ok) {
+        return response.json() as Promise<AppState>;
+      } else {
+        throw new Error("Error while loading the state.");
+      }
     }
-  )
-}
+  );
+};
