@@ -11,7 +11,7 @@ const App = () => {
   return (
     <AppContainer>
       <CustomDragLayer />
-      {state.lists.map((list, i) => (
+      {state.lists.map((list,i) => (
         <Column id={list.id} text={list.text} key={list.id} index={i}/>
       ))}
       <AddNewItem

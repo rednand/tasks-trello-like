@@ -2,27 +2,6 @@ import React, { useState } from "react";
 import { AppState } from "./AppStateContext";
 import { load } from "./api";
 
-const appData = {
-  draggedItem: undefined,
-  lists: [
-    {
-      id: "0",
-      text: "To Do",
-      tasks: [{ id: "c0", text: "Generate app scaffold" }],
-    },
-    {
-      id: "1",
-      text: "In Progress",
-      tasks: [{ id: "c2", text: "Learn Typescript" }],
-    },
-    {
-      id: "2",
-      text: "Done",
-      tasks: [{ id: "c3", text: "Begin to use static typing" }],
-    },
-  ],
-};
-
 export const withInitialState = (
   WrappedComponent: React.ComponentType<
     React.PropsWithChildren<{ initialState: AppState }>
@@ -33,7 +12,7 @@ export const withInitialState = (
     const [error, setError] = useState<Error | undefined>();
 
     const [initialState, setInitialState] = useState<AppState>({
-      lists: appData.lists,
+      lists: [],
       draggedItem: undefined,
     });
 
